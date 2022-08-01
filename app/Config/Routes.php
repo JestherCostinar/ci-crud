@@ -39,6 +39,7 @@ $routes->get('/', 'Home::index');
 
 // Students
 $routes->get('/students', 'StudentController::index');
+$routes->match(['get', 'post'], 'students/create', 'StudentController::create');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

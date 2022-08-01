@@ -7,6 +7,11 @@ use App\Models\StudentModel;
 
 class StudentController extends BaseController
 {
+    public function __construct()
+    {
+        $this->studentModel = model(StudentModel::class);   
+    }
+
     public function index()
     {
         $studentModel = model(StudentModel::class);
@@ -15,5 +20,30 @@ class StudentController extends BaseController
             'students' => $studentModel->findAll()
         ];
         return view('Students/index', $data);
+    }
+
+    public function create() {
+        
+        $data = [
+            'title' => 'Create student'
+        ];
+
+        if ($this->request->getMethod() === 'post' && $this->validate([
+            'name' => 'required|min_length[3]|max_length[255]',
+            'email' => 'required',
+            'phone' => 'required',
+            'course' => 'required',
+        ])) {
+            $this->studentModel->save([
+                'name' => $this->request->getPost('name'),
+                'email' => $this->request->getPost('email'),
+                'phone' => $this->request->getPost('phone'),
+                'course' => $this->request->getPost('course'),
+            ]);
+
+            return redirect('students')->with('status', 'Student record inserted successfully');
+        }
+        
+        return view('Students/create', $data);
     }
 }

@@ -1,12 +1,19 @@
-<?=$this->extend('layouts/frontend.php');?>
-<?=$this->section('content')?>
+<?= $this->extend('layouts/frontend.php'); ?>
+<?= $this->section('content') ?>
 
 <div class="card m-5">
+    <div class="col-md-12">
+        <?php if (session()->getFlashdata('status')) : ?>
+        <div class="alert alert-success" role="alert">
+            <?= session()->getFlashdata('status') ?>
+        </div>
+        <?php endif; ?>
+    </div>
+
     <div class="card-header">
         <h3>Students
-            <a href="" class="btn btn-primary float-end">Add Student</a>
+            <a href="students/create" class="btn btn-primary float-end">Add Student</a>
         </h3>
-
     </div>
     <div class="card-body">
         <table class="table">
@@ -21,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($students as $student): ?>
+                <?php foreach ($students as $student) : ?>
                 <tr>
                     <th scope="row"><?php echo $student['id']; ?></th>
                     <td><?php echo $student['name']; ?></td>
@@ -38,4 +45,4 @@
         </table>
     </div>
 </div>
-<?=$this->endSection()?>
+<?= $this->endSection() ?>

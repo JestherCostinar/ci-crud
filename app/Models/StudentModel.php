@@ -8,7 +8,6 @@ class StudentModel extends Model
 {
     protected $table            = 'students';
     protected $primaryKey       = 'id';
-    protected $allowedFields    = [];
-
+    protected $allowedFields    = ['name', 'email', 'phone', 'course'];
     
 }
