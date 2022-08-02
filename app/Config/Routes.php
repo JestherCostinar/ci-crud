@@ -41,7 +41,8 @@ $routes->get('/', 'Home::index');
 $routes->get('/students', 'StudentController::index');
 $routes->match(['get', 'post'], 'students/create', 'StudentController::create');
 $routes->match(['get', 'post'], 'students/update/(:num)', 'StudentController::update/$1');
-$routes->match(['get', 'post'], 'students/delete/(:num)', 'StudentController::delete/$1');
+$routes->get('students/delete/(:num)', 'StudentController::delete/$1');
+$routes->delete('students/delete/(:num)', 'StudentController::delete/$1');
 
 /*
  * --------------------------------------------------------------------

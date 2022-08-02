@@ -73,6 +73,7 @@ class StudentController extends BaseController
     }
 
     public function delete($id = null) {
-        echo $id;
+        $this->studentModel->delete($id);
+        return redirect()->back()->with('status', 'Student record has been deleted successfully');
     }
 }

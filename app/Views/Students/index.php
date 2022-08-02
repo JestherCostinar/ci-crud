@@ -25,6 +25,7 @@
                     <th scope="col">Phone</th>
                     <th scope="col">Course</th>
                     <th scope="col">Action</th>
+                    <th scope="col">Confirm Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,10 +37,21 @@
                     <td>@<?php echo $student['phone']; ?></td>
                     <td><?php echo $student['course']; ?></td>
                     <td>
-                        <a href="<?= base_url('students/update/'.$student['id']); ?>"
+                        <a href="<?= base_url('students/update/' . $student['id']); ?>"
                             class="btn btn-success btn-sm">Edit</a>
-                        <a href="<?= base_url('students/delete/'.$student['id'])?>"
+
+                        <a href="<?= base_url('students/delete/' . $student['id']) ?>"
                             class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                    <td>
+                        <form action="/students/delete/<?php echo $student['id'] ?>" method="post">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                        </form>
+                    </td>
+                    <td>
+                        <button type="button" value="<?= $student['id'] ?>"
+                            class="confirm-del-btn btn btn-danger btn-sm">Delete</button>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -47,4 +59,24 @@
         </table>
     </div>
 </div>
+<?= $this->endSection() ?>
+<?= $this->section('scripts') ?>
+<script>
+$(document).ready(function() {
+    $('.confirm-del-btn').click(function(e) {
+        e.preventDefault();
+        var id = $(this).val();
+        if (confirm("Do you want to delete this data?")) {
+            // alert(id);
+            $.ajax({
+                url: "/students/delete/" + id,
+                success: function(response) {
+                    window.location.reload();
+                    alert("Data delete");
+                }
+            })
+        }
+    })
+})
+</script>
 <?= $this->endSection() ?>
