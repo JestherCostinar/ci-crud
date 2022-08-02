@@ -36,8 +36,10 @@
                     <td>@<?php echo $student['phone']; ?></td>
                     <td><?php echo $student['course']; ?></td>
                     <td>
-                        <a href="" class="btn btn-success btn-sm">Edit</a>
-                        <a href="" class="btn btn-danger btn-sm">Delete</a>
+                        <a href="<?= base_url('students/update/'.$student['id']); ?>"
+                            class="btn btn-success btn-sm">Edit</a>
+                        <a href="<?= base_url('students/delete/'.$student['id'])?>"
+                            class="btn btn-danger btn-sm">Delete</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
