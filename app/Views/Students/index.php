@@ -25,7 +25,8 @@
                     <th scope="col">Phone</th>
                     <th scope="col">Course</th>
                     <th scope="col">Action</th>
-                    <th scope="col">Confirm Delete</th>
+                    <th scope="col">METHOD Delete</th>
+                    <th scope="col">Alertify Delete</th>
                 </tr>
             </thead>
             <tbody>
